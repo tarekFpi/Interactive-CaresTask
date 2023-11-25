@@ -3,9 +3,10 @@
     <uses-permission android:name="android.permission.INTERNET"></uses-permission>
 
     <application
-        android:label="cares_task"
+        android:label="Interactive Cares"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+
         <activity
             android:name=".MainActivity"
             android:exported="true"

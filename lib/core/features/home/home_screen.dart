@@ -36,6 +36,32 @@ class _HomeScreenState extends State<HomeScreen> {
 
   }
 
+  void logoutDialog() {
+    showDialog<void>(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text("Confirm logout"),
+        content: Text("Do you want to log out??"),
+        actions: <Widget>[
+          TextButton(
+            child: Text('No'),
+            onPressed: () => Navigator.of(context).pop(),
+          ),
+          TextButton(
+            onPressed: (){
+              Navigator.of(context).pop();
+
+              setState(() {
+                authController.logout();
+              });
+            },
+            child: Text('Yes'),
+          ),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
@@ -56,10 +82,12 @@ class _HomeScreenState extends State<HomeScreen> {
         IconButton(
           onPressed: () {
 
-            authController.logout();
+            logoutDialog();
+
           },
           icon: CircleAvatar(
-            child: Icon(FluentIcons.lock_closed_12_regular,size: 24,),
+            child: Icon(FluentIcons.lock_closed_key_20_filled,size: 24,
+              color: Colors.red,),
             radius: 24.0,
             backgroundColor: HexColor("#F5F6FC"),
           ),
